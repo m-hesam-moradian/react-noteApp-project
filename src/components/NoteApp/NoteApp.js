@@ -67,7 +67,7 @@ export default class NoteApp extends Component {
         <div>
           <section id="home">
             <div className="container">
-              <div className="header upper">SabzLearn Note App</div>
+              <div className="header upper">react note App</div>
 
               <br />
               <br />
