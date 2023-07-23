@@ -29,6 +29,7 @@ export default class NoteApp extends Component {
     this.enterFinder = this.enterFinder.bind(this);
     this.noteCreator = this.noteCreator.bind(this);
     this.deleteAll = this.deleteAll.bind(this);
+    this.touchDelete = this.touchDelete.bind(this);
   }
   colorSelector(color) {
     this.setState({ inputColor: color });
@@ -57,9 +58,17 @@ export default class NoteApp extends Component {
       };
     });
   }
-    deleteAll() {
-      this.setState({notes:[]})
+  deleteAll() {
+    this.setState({ notes: [] });
   }
+    touchDelete(id)
+    {
+        const afterDelete = this.state.notes.filter((obj) => obj.id != id)
+         this.setState({notes:afterDelete})
+    
+    
+    
+    }
 
   render() {
     return (
@@ -125,7 +134,10 @@ export default class NoteApp extends Component {
                         className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 p-3 card-columns"
                       >
                         {this.state.notes.map((obj) => (
-                          <Note obj={obj} />
+                          <Note
+                            obj={obj}
+                            touchDelete={this.touchDelete}
+                          />
                         ))}
                       </div>
                     </div>
