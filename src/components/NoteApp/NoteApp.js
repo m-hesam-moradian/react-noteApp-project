@@ -69,7 +69,7 @@ export default class NoteApp extends Component {
       return {
         notes: [
           ...prevState.notes,
-          {
+           {
             id: this.state.notes.length + 1,
             title: this.state.noteTitle,
             color: this.state.inputColor,
@@ -170,9 +170,12 @@ export default class NoteApp extends Component {
                         id="listed"
                         className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 p-3 card-columns"
                       >
-                        {this.state.notes.map((obj) => (
-                          <Note obj={obj} touchDelete={this.touchDelete} />
-                        ))}
+                        {this.state.notes.map(
+                          (obj) =>
+                           obj.title&&(
+                              <Note obj={obj} touchDelete={this.touchDelete} />
+                            )
+                        )}
                       </div>
                     </div>
                   </div>
