@@ -24,26 +24,46 @@ export default class NoteApp extends Component {
       noteTitle: "",
       inputColor: "#fff",
     };
-    // this.colorSelector = this.colorSelector.bind(this, color)
+
+    
+
+
     this.inputGether = this.inputGether.bind(this);
     this.enterFinder = this.enterFinder.bind(this);
     this.noteCreator = this.noteCreator.bind(this);
     this.deleteAll = this.deleteAll.bind(this);
     this.touchDelete = this.touchDelete.bind(this);
   }
+
+
+
   colorSelector(color) {
     this.setState({ inputColor: color });
   }
+
+
+
   inputGether(event) {
     this.setState({ noteTitle: event.target.value });
-    // console.log(this.state.noteTitle);
   }
+
+
+
+
   enterFinder(event) {
-    console.log(event.key == "Enter");
+    
     if (event.key == "Enter") {
+
       this.noteCreator();
+
     }
   }
+
+
+
+
+
+
   noteCreator() {
     this.setState((prevState) => {
       return {
@@ -55,20 +75,36 @@ export default class NoteApp extends Component {
             color: this.state.inputColor,
           },
         ],
+        inputColor: "#fff",
+        noteTitle: "",
       };
     });
+    
   }
+
+
+
+
+
+
   deleteAll() {
     this.setState({ notes: [] });
   }
-    touchDelete(id)
-    {
-        const afterDelete = this.state.notes.filter((obj) => obj.id != id)
-         this.setState({notes:afterDelete})
-    
-    
-    
-    }
+
+
+
+
+
+  touchDelete(id) {
+    const afterDelete = this.state.notes.filter((obj) => obj.id != id);
+    this.setState({ notes: afterDelete });
+  }
+
+
+
+
+
+
 
   render() {
     return (
@@ -91,6 +127,7 @@ export default class NoteApp extends Component {
                       placeholder="Something here..."
                       onChange={(event) => this.inputGether(event)}
                       onKeyDown={(event) => this.enterFinder(event)}
+                      value={this.state.noteTitle}
                     />
                   </div>
                   <div className="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto">
@@ -134,10 +171,7 @@ export default class NoteApp extends Component {
                         className="col-11 col-sm-11 col-md-11 col-lg-11 col-xl-11 p-3 card-columns"
                       >
                         {this.state.notes.map((obj) => (
-                          <Note
-                            obj={obj}
-                            touchDelete={this.touchDelete}
-                          />
+                          <Note obj={obj} touchDelete={this.touchDelete} />
                         ))}
                       </div>
                     </div>
